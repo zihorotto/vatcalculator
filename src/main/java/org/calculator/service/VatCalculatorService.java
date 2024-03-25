@@ -26,15 +26,17 @@ public class VatCalculatorService {
         Double vatAmount = input.getVatAmount();
         Double vatRate = input.getVatRate();
 
-        if (net != null) {
+        if (net != null && gross == null && vatAmount == null) {
             vatAmount = net * vatRate / 100;
             gross = net + vatAmount;
-        } else if (gross != null) {
+        } else if (gross != null && net == null && vatAmount == null) {
             net = gross / (1 + vatRate / 100);
             vatAmount = gross - net;
-        } else {
-            net = vatAmount / (vatRate / 100);
+        } else if (vatAmount != null && net == null && gross == null) {
+            net = vatAmount / (1 + vatRate / 100);
             gross = net + vatAmount;
+        } else {
+            throw new VatCalculationException("Please provide exactly one amount.");
         }
 
         return new VatCalculationResultDto(net, gross, vatAmount);
