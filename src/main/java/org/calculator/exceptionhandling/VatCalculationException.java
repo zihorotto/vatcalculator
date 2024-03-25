@@ -3,11 +3,11 @@ package org.calculator.exceptionhandling;
 import lombok.Getter;
 
 @Getter
-public class ValCalculationException extends RuntimeException {
+public class VatCalculationException extends RuntimeException {
 
     private final String message;
 
-    public ValCalculationException(String message) {
+    public VatCalculationException(String message) {
         super(message);
         this.message = message;
     }

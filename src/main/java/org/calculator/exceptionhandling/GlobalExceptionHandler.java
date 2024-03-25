@@ -12,8 +12,8 @@ import java.util.List;
 @Slf4j
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(ValCalculationException.class)
-    public ResponseEntity<List<ValidationError>> handleVatCalculationException(ValCalculationException exception) {
+    @ExceptionHandler(VatCalculationException.class)
+    public ResponseEntity<List<ValidationError>> handleVatCalculationException(VatCalculationException exception) {
         ValidationError validationError = new ValidationError("VAT Calculation",
                 "Error occurred during VAT calculation: " + exception.getMessage());
         log.error("Error in VAT calculation: " + exception.getMessage());
